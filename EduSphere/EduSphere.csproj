@@ -6,4 +6,39 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\CompanyLogos\apple.png" />
+    <None Include="wwwroot\Images\CompanyLogos\google.png" />
+    <None Include="wwwroot\Images\CompanyLogos\harvard.png" />
+    <None Include="wwwroot\Images\CompanyLogos\microsoft.png" />
+    <None Include="wwwroot\Images\CompanyLogos\nasa.png" />
+    <None Include="wwwroot\Images\CompanyLogos\oxford.png" />
+    <None Include="wwwroot\Images\CourseImages\cryptography.jpg" />
+    <None Include="wwwroot\Images\CourseImages\datascience.jpg" />
+    <None Include="wwwroot\Images\CourseImages\gamedevelopment.jpg" />
+    <None Include="wwwroot\Images\CourseImages\marketingandsales.jpg" />
+    <None Include="wwwroot\Images\CourseImages\webdesign.jpg" />
+    <None Include="wwwroot\Images\CourseImages\webdevelopment.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\ali.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\elena.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\johny.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\mia.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\sam.jpg" />
+    <None Include="wwwroot\Images\TeacherPhotos\sarah.jpeg" />
+  </ItemGroup>
+
 </Project>

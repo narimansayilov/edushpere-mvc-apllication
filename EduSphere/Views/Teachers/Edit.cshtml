@@ -1,0 +1,127 @@
+﻿@model EduSphere.Models.Teacher
+
+@{
+    ViewData["Title"] = "Update teacher";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm p-4 bg-light">
+                <h1 class="text-center mb-4">Update Teacher</h1>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="text-center mb-4">
+                        <img id="ProfilePicturePreview" class="border-info rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ProfilePictureURL" class="control-label">Profile Picture URL</label>
+                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label">Full Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Specialization" class="control-label">Specialization</label>
+                        <input asp-for="Specialization" class="form-control" />
+                        <span asp-validation-for="Specialization" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Biography" class="control-label">Biography</label>
+                        <textarea asp-for="Biography" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Biography" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label">Email Address</label>
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="LinkedinProfileUrl" class="control-label">LinkedIn Profile URL</label>
+                        <input asp-for="LinkedinProfileUrl" class="form-control" />
+                        <span asp-validation-for="LinkedinProfileUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="InstagramProfileUrl" class="control-label">Instagram Profile URL</label>
+                        <input asp-for="InstagramProfileUrl" class="form-control" />
+                        <span asp-validation-for="InstagramProfileUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="FacebookProfileUrl" class="control-label">Facebook Profile URL</label>
+                        <input asp-for="FacebookProfileUrl" class="form-control" />
+                        <span asp-validation-for="FacebookProfileUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="Update" class="btn btn-success mr-2" />
+                        <a class="btn btn-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        });
+
+        $("#ProfilePictureURL").on("input", function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $(this).val();
+        });
+    </script>
+}
+
+<style>
+    .card {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+    }
+
+        .card h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .card .form-group label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .card .form-group input, .card .form-group textarea {
+            font-size: 1rem;
+            padding: 0.75rem;
+        }
+
+    .btn-success, .btn-secondary {
+        margin-top: 20px;
+        padding: 0.5rem 1.5rem;
+        height: 40px;
+        width: 150px;
+        font-size: 1rem;
+    }
+</style>

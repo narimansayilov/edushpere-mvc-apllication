@@ -1,0 +1,119 @@
+﻿@model EduSphere.Models.Teacher
+
+@{
+    ViewData["Title"] = "Details of the teacher";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Sol Sütun -->
+                        <div class="col-md-4 text-center">
+                            <img src="@Model.ProfilePictureURL" alt="@Model.FullName" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" id="ProfilePicturePreview" />
+                            <div class="mt-3">
+                                <p class="h4 font-weight-bold">@Model.FullName</p>
+                                <p>@Model.Specialization</p>
+                            </div>
+                            <div class="social-links mt-3">
+                                <a href="@Model.LinkedinProfileUrl" target="_blank" class="d-inline-block mx-2">
+                                    <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0e76a8;"></i>
+                                </a>
+                                <a href="@Model.InstagramProfileUrl" target="_blank" class="d-inline-block mx-2">
+                                    <i class="bi bi-instagram" style="font-size: 1.5rem; color: #E4405F;"></i>
+                                </a>
+                                <a href="@Model.FacebookProfileUrl" target="_blank" class="d-inline-block mx-2">
+                                    <i class="bi bi-facebook" style="font-size: 1.5rem; color: #3b5998;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Sağ Sütun -->
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="control-label font-weight-bold">Biography</label>
+                                <p>@Model.Biography</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label font-weight-bold">Phone Number</label>
+                                <p>@Model.PhoneNumber</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label font-weight-bold">Email Address</label>
+                                <p>@Model.EmailAddress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-outline-primary m-1" asp-action="Edit" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a class="btn btn-danger m-1" asp-action="Delete" asp-route-id="@Model.Id"><i class="bi bi-trash"></i> Delete</a>
+                    }
+                    <a class="btn btn-outline-secondary" asp-action="Index"><i class="bi bi-list"></i> Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = "@Model.ProfilePictureURL";
+        });
+    </script>
+}
+
+<style>
+    .card {
+        background-color: #f8f9fa; /* Açık gri arka plan */
+        border: 1px solid #dee2e6; /* Hafif sınır */
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group p {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        color: #6c757d; /* Biraz daha koyu gri */
+    }
+
+    .form-group .h4 {
+        font-size: 1.5rem;
+        font-weight: 700; /* Daha kalın yazı tipi */
+    }
+
+    .btn-outline-primary, .btn-outline-secondary, .btn-danger {
+        margin: 0.5rem;
+    }
+
+        .btn-outline-primary:hover, .btn-outline-secondary:hover, .btn-danger:hover {
+            background-color: #e9ecef; /* Hafif hover efekti */
+        }
+
+    .social-links a {
+        margin-right: 10px;
+    }
+
+    .card-footer {
+        margin-top: 20px;
+    }
+
+    .rounded-circle {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+</style>

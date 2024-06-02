@@ -1,0 +1,98 @@
+﻿@model EduSphere.Models.Company
+
+@{
+    ViewData["Title"] = "Details of the company";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm p-4 bg-light">
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-md-6 text-center">
+                        <img src="@Model.Logo" alt="@Model.Name" class="border-info rounded-circle mb-3" style="max-width: 150px;" id="LogoPreview" />
+                        <div class="text-left">
+                            <p class="mb-0">@Model.Description</p>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <p class="h4 font-weight-bold">@Model.Name</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label font-weight-bold">Email Address</label>
+                            <p>@Model.EmailAddress</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label font-weight-bold">Phone Number</label>
+                            <p>@Model.PhoneNumber</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label font-weight-bold">Website Address</label>
+                            <p><a href="@Model.WebsiteAddress" target="_blank">@Model.WebsiteAddress</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-outline-primary m-1" asp-action="Edit" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a class="btn btn-danger m-1"  asp-action="Delete" asp-route-id="@Model.Id"><i class="bi bi-trash"></i> Delete</a>
+                    }
+                    <a class="btn btn-secondary" asp-action="Index"><i class="bi bi-list"></i> Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('LogoPreview');
+            output.src = "@Model.Logo";
+        });
+    </script>
+}
+
+<style>
+    .card {
+        background-color: #f8f9fa; /* Light gray background */
+        border: 1px solid #dee2e6; /* Light border */
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group p {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        color: #6c757d; /* Slightly darker gray */
+    }
+
+    .form-group .h4 {
+        font-size: 1.5rem;
+    }
+
+    .card-footer {
+        margin-top: 250px;
+    }
+
+    .btn-outline-success, .btn-outline-secondary {
+        margin: 0.5rem;
+    }
+
+        .btn-outline-success:hover, .btn-outline-secondary:hover {
+            background-color: #e9ecef; /* Light hover effect */
+        }
+</style>

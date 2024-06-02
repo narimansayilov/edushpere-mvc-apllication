@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EduSphere.Models.Teacher>
+
+@{
+    ViewData["Title"] = "List of Teachers";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <a href="@Url.Action("Details", "Teachers", new { id = item.Id })" class="card-link">
+                    <div class="card h-100">
+                        <img src="@item.ProfilePictureURL" class="card-img teacher-img rounded-circle mx-auto d-block mt-3" alt="@item.FullName">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@item.FullName</h5>
+                            <p class="card-text">@item.Specialization</p>
+                            <p class="card-text">
+                                <a href="@item.FacebookProfileUrl" class="contact-icon"><i class="bi bi-facebook"></i></a>
+                                <a href="@item.InstagramProfileUrl" class="contact-icon"><i class="bi bi-instagram"></i></a>
+                                <a href="@item.LinkedinProfileUrl" class="contact-icon"><i class="bi bi-linkedin"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@await Html.PartialAsync("_CreateItem", "Teachers")
+
+<style>
+    .teacher-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .teacher-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .contact-icon {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .contact-icon:hover {
+            color: #0056b3;
+        }
+
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+        .card-link:hover .card {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-10px);
+        }
+</style>
+
+<!-- Include Bootstrap Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">

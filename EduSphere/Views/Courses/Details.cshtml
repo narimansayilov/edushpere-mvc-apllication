@@ -1,0 +1,101 @@
+﻿<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm p-4 bg-light">
+                <div class="row ">
+
+                    <div class="col-md-6">
+                        <img src="@Model.ImageUrl" width="100%" alt="@Model.Name">
+                        <div class="card-text mt-3">
+                            <p class="mb-2"><b>Category: </b><span class="course-detail">@Model.CourseCategory</span></p>
+                            <p class="mb-2"><b>Price: </b><span class="course-detail">@Model.Price.ToString("c")</span></p>
+                            <p class="mb-2"><b>Start Date: </b><span class="course-detail">@Model.StartDate.ToString("dd MMM yyyy")</span></p>
+                            <p class="mb-2"><b>End Date: </b><span class="course-detail">@Model.EndDate.ToString("dd MMM yyyy")</span></p>
+                            <p class="mb-2">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                }
+                                else if (DateTime.Now > Model.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <h4 class="font-weight-bold">@Model.Name</h4>
+                        </div>
+                        <div class="text-left">
+                            <b>Description: </b>
+                            <p class="course-description">@Model.Description</p>
+                        </div>
+                        <div class="column card-text mt-3">
+                            <b>Company: </b>
+                            <a class="card p-1 company-link" asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId">
+                                <img class="border-info rounded-circle mr-2" src="@Model.Company.Logo" style="height: 45px; width: 50px;" />
+                                @Model.Company.Name
+                            </a>
+                        </div>
+                        <p class="card-text mt-3">
+                            <b>Teachers: </b>
+                            <div class="column">
+                                @foreach (var teacher in Model.Teachers_Courses)
+                                {
+                                    <div class="col-6">
+                                        <a class="card p-1 teacher-link" asp-controller="Teachers" asp-action="Details" asp-route-id="@teacher.TeacherId">
+                                            <img class="border-info rounded-circle mr-2" src="@teacher.Teacher.ProfilePictureURL" style="height: 45px; width: 50px;" />
+                                            @teacher.Teacher.FullName
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+                    </div>
+
+                    <div class="card-footer  text-center">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-outline-primary m-1" asp-action="Edit" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+                        }
+                        <a class="btn btn-secondary" asp-action="Index"><i class="bi bi-list"></i> Show All</a>
+                        <a class="btn btn-success text-white @((DateTime.Now < Model.StartDate || DateTime.Now > Model.EndDate) ? "disabled" : "")"
+                           asp-controller="Orders"
+                           asp-action="AddItemToShoppingCart"
+                           asp-route-id="@Model.Id">
+                            <i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .course-detail {
+        font-weight: bold;
+    }
+
+    .course-description {
+        font-style: italic;
+    }
+
+    .company-link, .teacher-link {
+        text-decoration: none;
+        color: #333;
+        display: inline-block;
+    }
+
+    .teacher-link{
+        display: block;
+    }
+        
+ </style>
